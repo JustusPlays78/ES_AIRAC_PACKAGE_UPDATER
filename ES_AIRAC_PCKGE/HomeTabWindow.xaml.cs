@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using ES_AIRAC_PCKGE.EnumsList;
 using ES_AIRAC_PCKGE.Services;
 using ES_AIRAC_PCKGE.Services.Backend;
@@ -11,24 +12,33 @@ using Microsoft.Win32;
 
 namespace ES_AIRAC_PCKGE
 {
-    
-    public static string AppVersion = "1.0.0.0";
-    public static string LogPath = System.IO.Directory.GetCurrentDirectory()+ "\\debuging\\log_" + DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss") + ".txt";
-    public static string ConfigPath = System.IO.Directory.GetCurrentDirectory() + "\\config.json";
-    public static string? SctPath;
-    
-    private LoggerService _loggerService = new();
-    private ConfigService _configService = new();
-    private BackendService _backendService = new();
-    
-    
-    private Brush bluecolor = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#233244"));
-    private Brush whitecolor = Brushes.White;
-    
-    public HomeTabWindow()
-    { 
-        _loggerService.OnStart();
-        _loggerService.LogMessage(SeverityLevelType.Info, "LoggerService started");
+    public partial class HomeTabWindow : Window
+    {
+        private LoggerService _loggerService = new();
+        private ConfigService _configService = new();
+        private BackendService _backendService = new();
+        
+        public static string AppVersion = "1.0.0.0";
+        public static string LogPath = System.IO.Directory.GetCurrentDirectory()+ "\\debuging\\log_" + DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss") + ".txt";
+        public static string ConfigPath = System.IO.Directory.GetCurrentDirectory() + "\\config.json";
+        public static string? SctPath;
+        
+        private Brush bluecolor = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#233244"));
+        private Brush whitecolor = Brushes.White;
+
+        public ObservableCollection<FeatureItem> Features { get; set; }
+
+        // Declare the controls
+        private ContentControl MainContent2;
+        
+        private TextBox SctFolderPath2;
+
+        public HomeTabWindow()
+        {
+            InitializeComponents();
+            
+            _loggerService.OnStart();
+            _loggerService.LogMessage(SeverityLevelType.Info, "LoggerService started");
 
         
         _configService.OnStart();

@@ -28,8 +28,8 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button Content="Edit" Margin="0,0,5,0" Click="EditFeature_Click"/>
-                                        <Button Content="Delete" Click="DeleteFeature_Click"/>
+                                        <Button Content="Edit" Margin="0,0,5,0"/>
+                                        <Button Content="Delete"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
@@ -85,7 +85,7 @@
                     </TextBox>
                 </StackPanel>
 
-                <Button Margin="0,25,50,0" Background="#233244" Content="Save" FontSize="14" Foreground="White" Click="SaveFeature_Click">
+                <Button Margin="0,25,50,0" Background="#233244" Content="Save" FontSize="14" Foreground="White">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Width="120" Height="25" Background="{TemplateBinding Background}" CornerRadius="10">
