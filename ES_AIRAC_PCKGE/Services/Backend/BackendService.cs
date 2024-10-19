@@ -8,12 +8,14 @@ public class BackendService
     private ConfigService _configService = new();
     private BackendFileChangerService _backendFileChangerService = new();
 
+    private string configPath;
+
     public async void OnStart(ConfigService _configService)
     {
         _loggerService.LogMessage(SeverityLevelType.Info, "Backend Service Started");
     }
 
-    public async void FeatureStart()
+    public async void FeatureStart(string confgPath)
     {
         _configService = _configService.GetConfig();
         for(int i = 0; i < _configService.GetFeatureListBoolean().Count; i++)
